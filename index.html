@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Maven+Pro:regular,700&play=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="style.css">
+        <title>cinema web</title>
+    </head>
+    <body>
+        <main class="content">
+            <div class="content__wrapper">
+                <div class="film-info" >
+                    <div class="film-info__poster">
+                        <div class="film-info__img">
+                            <img src="img/poster.png" alt="">
+                        </div>
+                        <div class="film-info__title">
+                            <h1>Soul</h1>
+                            <p>2021</p>
+                        </div>
+                    </div>
+
+                    <div class="film-info__seats">
+                        <div class="film-info__seats-title">
+                            Selected seats
+                        </div>
+                        <div class="film-info__selected-seats">
+
+
+
+
+                            <div class="film-info__seat_js">
+                                <div class="selected-seat">
+                                    <div class="selected-seat__place">
+                                        <div class="selected-seat__number selected-seat__number_place">
+                                            1
+                                        </div>
+                                        <div class="selected-seat__disc">
+                                            Place
+                                        </div>
+                                    </div>
+                                    <div class="selected-seat__row">
+                                        <div class="selected-seat__number selected-seat__number_row">
+                                            1
+                                        </div>
+                                        <div class="selected-seat__disc">
+                                            Row
+                                        </div>
+                                    </div>
+                                    <div class="selected-seat__price">
+                                        <div class="selected-seat__number selected-seat__number_price">
+                                            5$
+                                        </div>
+                                        <div class="selected-seat__disc">
+                                            Price
+                                        </div>
+                                    </div>
+                                    <div class="selected-seat__cancel">
+                                        <img src="img/cancel.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="film-info__seat">
+                                
+                            </div>
+
+
+                        </div>
+                        <div class="film-info__final-cost">
+                            <div class="film-info__cost-title">
+                                Final cost
+                            </div>
+                            <div class="film-info__cost">
+                                0 $
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film-info__button">
+                        <div class="film-info__button-text">BUY</div>
+                    </div>
+                </div>
+
+                <div class="hall-info" >
+                    <div class="hall-info__date">
+                        <div class="arrow-left">  
+                        </div>
+                        <div class="hall-info__selected-date">09 February</div>
+                        <div class="arrow-right">                           
+                        </div>
+                    </div>
+                    <div class="hall-info__time">
+                        <div class="hall-info__current-time">9:00</div>
+                        <div class="hall-info__current-time">11:00</div>
+                        <div class="hall-info__current-time_selected">13:00</div>
+                        <div class="hall-info__current-time">15:00</div>
+                        <div class="hall-info__current-time">17:00</div>
+                        <div class="hall-info__current-time">19:00</div>
+                    </div>
+                    <div class="hall_info__hall">
+                        <div class="hall-info__screen">Screen</div>
+                        <div class="hall-info__screen-pic"></div>
+                        <div class="hall-info__seats">
+                            <div id="hall" class="hall_seats">
+                                <!-- fill by JS -->
+                            </div>
+                        </div>
+                        <div class="hall-info__saturation-line"></div>
+                        <div class="hall-info__legend">
+                            <div class="hall-info__legend-item">
+                                <div class="hall-info__legend-color hall-info__legend-color_free"></div>
+                                <div class="hall-info__legend-description">Free</div>
+                            </div>
+                            <div class="hall-info__legend-item">
+                                <div class="hall-info__legend-color hall-info__legend-color_taken"></div>
+                                <div class="hall-info__legend-description">Taken</div>
+                            </div>
+                            <div class="hall-info__legend-item">
+                                <div class="hall-info__legend-color hall-info__legend-color_selected"></div>
+                                <div class="hall-info__legend-description">Selected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="app.js"></script>
+    </body>
+</html>
