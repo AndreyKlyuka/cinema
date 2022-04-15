@@ -1,13 +1,12 @@
-let hall = document.getElementById("hall");
+const hall = document.getElementById("hall");
+const seats = document.getElementsByClassName("seat");
+const selectedSeatContainer = document.querySelector('.film-info__seat');
 
-let seats = document.getElementsByClassName("seat");
-let selectedSeatContainer = document.querySelector('.film-info__seat');
 
-
-const row = [8, 10, 12, 12, 12, 12, 12];    // array of hall
-let hallMapArr = [];                        // 3dimension array of hall
-let selectedSeatsArr = [];                  //  save all selected seat
-let totalCost = 0;
+const row = [8, 10, 12, 12, 12, 12, 12];    // array which fill hall
+let hallMapArr = [];                        // 3dimension array of whole hall
+let selectedSeatsArr = [];                  // save all selected seat
+let totalCost = 0;                          // total price for selected seats
 
 
 function fillHall() {
@@ -38,14 +37,23 @@ function fillHall() {
     hall.innerHTML = hallMap;               //заполнение блока hall
 }
 
-function addSeatsToBuy() {                  // сделать так чтобы функция не срабатывала для купленных мест
+function addSeatsToBuy() {
+    // add listener for each seat
+
+
     for (let seat of seats) {
         seat.addEventListener("click", seatCallback(seat));
     }
 }
 
 function seatCallback(place) {
-    const cb = function(event) {
+    // return callback for addSeatsToBuy();
+    // this callback help :
+    //      - put a parameter to the callback for listener
+    //      - remove listener if seat have been taken
+
+
+    const cb = function() {
         if (place.classList.contains('hall-info__legend-color_taken')) {
             place.removeEventListener("click", cb);
             return;
@@ -56,6 +64,13 @@ function seatCallback(place) {
 }
 
 function seatEvent(place) {
+    // event for addSeatsToBuy();
+    // this event : 
+    //      - swtich classes to view state of seats
+    //      - fill 'state' field in hallMapArr to current state(free or selected)
+    //      - call showSelectedSeats(); and countSeatsPrice();
+
+
     let hallRowNum = place.getAttribute('data-row');
     let hallSeatNum = place.getAttribute('data-seat');
 
@@ -74,7 +89,6 @@ function seatEvent(place) {
     countSeatsPrice();
 }
 
-
 function showSelectedSeats(hallRowNum, hallSeatNum) {
     // show or hide the seat, user clicked, in the "selected seats" field at left
 
@@ -83,12 +97,22 @@ function showSelectedSeats(hallRowNum, hallSeatNum) {
 
     selectedSeatsArr.push(hallMapArr[hallRowNum-1][hallSeatNum-1]);
     selectedSeatsArr = selectedSeatsArr.filter(element => element.state == 'selected');
+    
+    if (selectedSeatsArr.length >= 6)
+        {
+            selectedSeatContainer.setAttribute("style", "overflow-y: scroll;height: 400px;");
+        }
+    else {
+        selectedSeatContainer.setAttribute("style", "overflow-y: visible;");
+    }
 
+    
     selectedSeatContainer.innerHTML = '';
 
     for (let seat of selectedSeatsArr) {
         // console.log(seat.seat, seat.row);
         // console.log(seat)
+        // console.log(selectedSeatsArr)
 
         selectedSeat.children[0].children[1].children[0].innerHTML = seat.row;
         selectedSeat.children[0].children[0].children[0].innerHTML = seat.seat;
@@ -96,9 +120,14 @@ function showSelectedSeats(hallRowNum, hallSeatNum) {
         
     }
 
+    selectedSeatContainer.scrollTop = selectedSeatContainer.scrollHeight;
+
 }
 
 function countSeatsPrice() {
+    //count and show total price of selected seats
+
+
     totalCost = 0;
 
     let finalCost = document.querySelector('.film-info__cost');
@@ -115,6 +144,12 @@ function countSeatsPrice() {
 }
 
 function buySelectedSeats() {
+    // add listener for buy button which
+    //      - change 'state' field in hallMapArr
+    //      - change class to taken
+    //      - refill selectedSeatContainer, selectedSeatArr and show price
+
+
     let button = document.querySelector('.film-info__button');
 
     button.addEventListener('click', function() {
